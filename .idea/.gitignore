@@ -105,9 +105,6 @@ ipython_config.py
 #   https://pdm.fming.dev/#use-with-ide
 .pdm.toml
 
-# Environments
-.env
-.venv
 
 # mypy
 .mypy_cache/
