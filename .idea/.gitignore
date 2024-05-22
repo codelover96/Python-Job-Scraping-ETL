@@ -8,6 +8,13 @@
 .idea/**/dictionaries
 .idea/**/shelf
 
+/2.Python Job Scraping.iml
+/misc.xml
+/modules.xml
+/inspectionProfiles/profiles_settings.xml
+/vcs.xml
+/workspace.xml
+
 # AWS User-specific
 .idea/**/aws.xml
 
