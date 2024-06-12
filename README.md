@@ -4,7 +4,7 @@
 This repository showcases an automated web scraper developed to extract Python job listings, demonstrating the setup of a complete data pipeline on Google Cloud Platform (GCP).
 
 ## Project Architecture
-![Project Architecture](https://github.com/codelover96/Python-Job-Scraping-ETL/assets/images/104796421/projects-structure.png)
+![Project Architecture](https://github.com/codelover96/Python-Job-Scraping-ETL/blob/master/assets/images/project-structure.png)
 
 ## Skills Demonstrated
 - **Web Scraping**: Uses Selenium for automated extraction of job listing data.
@@ -50,14 +50,14 @@ This repository showcases an automated web scraper developed to extract Python j
 5. **Deploy on Google Cloud.**
    - Use the provided Dockerfile to build the Docker Image of the Flask application (app.py).
    - Deploy the containerized Flask application on Cloud Run (detailed instructions provided by [DataProjects.io](https://dataprojects.io) in the project material).
-   ![Cloud Run Example](https://github.com/codelover96/Python-Job-Scraping-ETL/assets/images/cloud-run.JPG)
+   ![Cloud Run Example](https://github.com/codelover96/Python-Job-Scraping-ETL/blob/master/assets/images/cloud-run.JPG)
    - Set up Cloud Scheduler to automate the scraping process (detailed instructions provided by [DataProjects.io](https://dataprojects.io) in the project material).
-   ![Cloud Run Example](https://github.com/codelover96/Python-Job-Scraping-ETL/assets/cloud-scheduler.JPG)
+   ![Cloud Run Example](https://github.com/codelover96/Python-Job-Scraping-ETL/blob/master/assets/cloud-scheduler.JPG)
 
 ### Running the Project
    - Ensure all settings in settings.py are correctly configured, deploy the scraper to Google Cloud Run, and manage the scraping schedule with Cloud Scheduler.
    - Preview of the created Big Query Dataset and Table
-   ![Cloud Run Example](https://github.com/codelover96/Python-Job-Scraping-ETL/assets/images/big-query-table-preview.JPG)
+   ![Cloud Run Example](https://github.com/codelover96/Python-Job-Scraping-ETL/blob/master/assets/images/big-query-table-preview.JPG)
 
 Contributions to this project are welcome! Please fork this repository and submit a pull request with your proposed changes.
 

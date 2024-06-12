@@ -1,4 +1,4 @@
 # Environment related files and folders, that should not be public for security reasons
 .env
 .venv
-/assets/keys/
+/assets/keys/*
