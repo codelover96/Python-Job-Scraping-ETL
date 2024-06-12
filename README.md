@@ -52,7 +52,7 @@ This repository showcases an automated web scraper developed to extract Python j
    - Deploy the containerized Flask application on Cloud Run (detailed instructions provided by [DataProjects.io](https://dataprojects.io) in the project material).
    ![Cloud Run Example](https://github.com/codelover96/Python-Job-Scraping-ETL/blob/master/assets/images/cloud-run.JPG)
    - Set up Cloud Scheduler to automate the scraping process (detailed instructions provided by [DataProjects.io](https://dataprojects.io) in the project material).
-   ![Cloud Run Example](https://github.com/codelover96/Python-Job-Scraping-ETL/blob/master/assets/cloud-scheduler.JPG)
+   ![Cloud Run Example](https://github.com/codelover96/Python-Job-Scraping-ETL/blob/master/assets/images/cloud-scheduler.JPG)
 
 ### Running the Project
    - Ensure all settings in settings.py are correctly configured, deploy the scraper to Google Cloud Run, and manage the scraping schedule with Cloud Scheduler.
