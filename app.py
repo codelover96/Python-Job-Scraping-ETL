@@ -1,59 +1,75 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import time
 import os
-import settings
+import time
 import pandas as pd
-from google.cloud import bigquery
-import google.cloud.exceptions
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
+from google.cloud import bigquery
+import google.cloud.exceptions
+from flask import Flask
+import settings
+
+app = Flask(__name__)
+
+# Check if running inside Docker
+if os.getenv('DOCKER_ENV') == 'true':
+    from pyvirtualdisplay import Display
+
+    display = Display(visible=0)
+    display.start()
 
 
 def set_environment():
-    # Read Google Application Credentials only if working on a local environment
-    if settings.is_local_environment:
-        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = settings.bigquery_service_account
+    """Set up the environment variable for Google Cloud authentication."""
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = settings.bigquery_service_account
 
 
-def init_chrome_webdriver():
-    """Initialize and return a Chrome Webdriver
+def init_webdriver():
+    """Initialize and return a Chrome WebDriver optimized for running in a Docker container."""
+    # Setup Chrome options for headless operation
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')  # Run headless Chrome
+    chrome_options.add_argument('--no-sandbox')  # Bypass OS security model, crucial for Docker
+    chrome_options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource problems
+    chrome_options.add_argument('--disable-gpu')  # disable gpu hardware acceleration
+    chrome_options.add_argument('--window-size=1920,1080')
+    chrome_options.add_argument('--disable-extensions')
+    chrome_options.add_argument('--disable-infobars')
 
-    Returns:
-        Chrome WebDriver instance
-    """
-    s = Service(ChromeDriverManager().install())
-    return webdriver.Chrome(service=s)
+    # Optional: Use ChromeDriverManager to handle driver automatically
+    service = Service(ChromeDriverManager().install())
+
+    # Initialize a new browser instance with specified options
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+
+    return driver
 
 
-def scrape_job_postings(driver: webdriver):
-    """Scrape job postings from a fake job board and return them as a list of dictionaries.
-
-    Returns:
-        A list of dictionaries : list[dict[str, Any]]
-    """
-    driver.get("https://realpython.github.io/fake-jobs/")
-    time.sleep(2)
+def scrape_job_postings(driver):
+    """Scrape job postings from a fake job board and return them as a list of dictionaries."""
+    driver.get(settings.JOB_BOARD_URL)
+    time.sleep(settings.PAGE_LOAD_DELAY)
 
     jobs = []
     job_cards = driver.find_elements(By.CLASS_NAME, "card-content")
 
-    # Loop through each job card and extract details
     for card in job_cards:
         title = card.find_element(By.CLASS_NAME, "title").text
         company = card.find_element(By.CLASS_NAME, "company").text
         location = card.find_element(By.CLASS_NAME, "location").text
         date_posted = card.find_element(By.TAG_NAME, "time").text
 
-        # Store scraped job data in a dictionary
         jobs.append({
             "title": title,
             "company": company,
             "location": location,
             "date_posted": date_posted
         })
+
     return jobs
 
 
@@ -108,14 +124,16 @@ def upload_df_to_bigquery(dataframe: pd.DataFrame, project_id: str, dataset_id: 
         raise e
 
 
+@app.route('/')
 def main():
     """Initializes necessary scraping variables, scrapes and converts job data, then uploads them to BigQuery.
 
     :return:
-        None
+        string:
     """
     set_environment()
-    driver = init_chrome_webdriver()
+    driver = init_webdriver()
+    return_message = ''
     try:
         jobs = scrape_job_postings(driver)
         jobs_df = pd.DataFrame(jobs)
@@ -123,12 +141,14 @@ def main():
         jobs_df['date_posted'] = pd.to_datetime(jobs_df['date_posted'], errors='coerce', format='%Y-%m-%d')
         upload_df_to_bigquery(jobs_df, project_id=settings.PROJECT_ID, dataset_id=settings.DATASET_ID,
                               table_name=settings.TABLE_NAME)
+        return_message = '200, Success'
     except Exception as e:
-        raise e
+        return_message = str(e)
     finally:
         driver.quit()
         print("WebDriver session has been closed")
+        return return_message
 
 
 if __name__ == "__main__":
-    main()
+    app.run(host='0.0.0.0', port=8080)
