@@ -59,13 +59,13 @@ This repository showcases an automated web scraper developed to extract Python j
    - Preview of the created Big Query Dataset and Table
    ![Cloud Run Example](https://github.com/codelover96/Python-Job-Scraping-ETL/blob/master/assets/images/big-query-table-preview.JPG)
 
-Contributions to this project are welcome! Please fork this repository and submit a pull request with your proposed changes.
-
 ## Scraped Data
-As there are privacy and legal issues from scraping live job data, this project used fake job posting generated from [Fake Jobs](https://github.com/realpython/fake-jobs) initially.
+As there are privacy and legal issues from scraping live job data, this project used fake job postings generated from [Fake Jobs](https://github.com/realpython/fake-jobs) initially.
 With some JavaScript magic I was able to generate more fake jobs with Python relative roles, just for visualization purposes. These new job postings will help me, make better a better report with Looker Studio. 
 You can find the newly created job postings in [this](https://codelover96.github.io/fake-jobs) GitHub page. If you would like to see the JavaScript code, head to my GitHub repo [here](https://github.com/codelover96/fake-jobs)
 
+## Contributing
+Contributions to this project are welcome! Please fork this repository and submit a pull request with your proposed changes.
 
 ## Acknowledgments
 This project is provided by [DataProjects.io](https://dataprojects.io), a platform that helps data professionals build a portfolio of real-world, end-to-end projects on the cloud.
