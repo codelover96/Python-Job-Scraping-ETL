@@ -52,7 +52,7 @@ This repository showcases an automated web scraper developed to extract Python j
    - Deploy the containerized Flask application on Cloud Run (detailed instructions provided by [DataProjects.io](https://dataprojects.io) in the project material).
    ![Cloud Run Example](https://github.com/codelover96/Python-Job-Scraping-ETL/blob/master/assets/images/cloud-run.JPG)
    - Set up Cloud Scheduler to automate the scraping process (detailed instructions provided by [DataProjects.io](https://dataprojects.io) in the project material).
-   ![Cloud Run Example](https://github.com/codelover96/Python-Job-Scraping-ETL/blob/master/assets/images/cloud-scheduler.JPG)
+   ![Cloud Run Example](https://github.com/codelover96/Python-Job-Scraping-ETL/blob/master/assets/cloud-scheduler.JPG)
 
 ### Running the Project
    - Ensure all settings in settings.py are correctly configured, deploy the scraper to Google Cloud Run, and manage the scraping schedule with Cloud Scheduler.
@@ -61,14 +61,8 @@ This repository showcases an automated web scraper developed to extract Python j
 
 Contributions to this project are welcome! Please fork this repository and submit a pull request with your proposed changes.
 
-## Scraped Data
-As there are privacy and legal issues from scraping live job data, this project used fake job posting generated from [Fake Jobs](https://github.com/realpython/fake-jobs) initially.
-With some JavaScript magic I was able to generate more fake jobs with Python relative roles, just for visualization purposes. These new job postings will help me, make better a better report with Looker Studio. 
-You can find the newly created job postings in [this](https://codelover96.github.io/fake-jobs) GitHub page. If you would like to see the JavaScript code, head to my GitHub repo [here](https://github.com/codelover96/fake-jobs)
-
-
 ## Acknowledgments
 This project is provided by [DataProjects.io](https://dataprojects.io), a platform that helps data professionals build a portfolio of real-world, end-to-end projects on the cloud.
 
 ## License
-This project is licensed under the Mozilla Public License 2.0 - see the [LICENSE](Mozilla-Public-License-2.0.txt) file for details.
+This project is licensed under the Mozilla Public License 2.0 - see the [LICENSE](LICENSE) file for details.
