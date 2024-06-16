@@ -64,6 +64,11 @@ As there are privacy and legal issues from scraping live job data, this project 
 With some JavaScript magic I was able to generate more fake jobs with Python relative roles, just for visualization purposes. These new job postings will help me, make better a better report with Looker Studio. 
 You can find the newly created job postings in [this](https://codelover96.github.io/fake-jobs) GitHub page. If you would like to see the JavaScript code, head to my GitHub repo [here](https://github.com/codelover96/fake-jobs)
 
+## Looker Studio Reports
+Looker Studio helped me create contextful visualizations and understand scraped data. The report serves as a proof of concept of final data assessment to derive valuable insights.
+The created report can be found here: [Python Job Scraper Report](https://lookerstudio.google.com/reporting/77bc9b80-9ffc-47f2-a0c8-80b2704cef53)
+![Looker Studio Report Page1](https://github.com/codelover96/Python-Job-Scraping-ETL/blob/master/assets/images/looker-studio-1.JPG)
+![Looker Studio Report Page2](https://github.com/codelover96/Python-Job-Scraping-ETL/blob/master/assets/images/looker-studio-2.JPG)
 ## Contributing
 Contributions to this project are welcome! Please fork this repository and submit a pull request with your proposed changes.
 
